@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-const Enemy = function(x, y) {
+const Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -8,6 +8,7 @@ const Enemy = function(x, y) {
     this.sprite = 'images/enemy-bobcat.png';
     this.x = x;
     this.y = y;
+    this.speed = speed;
 };
 
 // Update the enemy's position, required method for game
@@ -16,7 +17,10 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    this.x += 50 * dt;
+    this.x += this.speed * dt;
+    if (this.x >= 515){
+        this.x = -100;
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -43,16 +47,16 @@ Player.prototype.render = function() {
 }
 
 Player.prototype.handleInput = function(key) {
-    if (key === 'left'){
+    if (key === 'left' && player.x > 30){
         player.x -= 100;
     }
-    if (key === 'up'){
+    if (key === 'up' && player.y > 35){
         player.y -= 85;
     }
-    if (key === 'right'){
+    if (key === 'right' && player.x < 430){
         player.x += 100;
     }
-    if (key === 'down'){
+    if (key === 'down' && player.y < 545){
         player.y += 85;
     }
 }
@@ -61,8 +65,11 @@ Player.prototype.handleInput = function(key) {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 let allEnemies = [];
-allEnemies.push(new Enemy (-150, 170))
-let player = new Player(195, 450);
+let enemy1 = allEnemies.push(new Enemy(-100, 375, 190));
+let enemy2 = allEnemies.push(new Enemy(-100, 295, 250));
+let enemy3 = allEnemies.push(new Enemy(-100, 210, 195));
+let enemy4 = allEnemies.push(new Enemy(-100, 125, 225));
+let player = new Player(230, 460);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.

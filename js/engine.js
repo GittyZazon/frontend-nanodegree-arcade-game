@@ -79,7 +79,18 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        //checkCollisions();
+        /*function collides(x, y, r, b, x2, y2, r2, b2) {
+            return !(r <= x2 || x > r2 ||
+             b <= y2 || y > b2);
+        }
+
+        function boxCollides(x, y, size, x2, y2, size2) {
+            return collides(player.x, player.y,
+                player.x + size[0], pos[1] + size[1],
+                pos2[0], pos2[1],
+                pos2[0] + size2[0], pos2[1] + size2[1]);
+        }*/
     }
 
     /* This is called by the update function and loops through all of the
@@ -93,12 +104,12 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
-        let gameTime = 0;
+        /*let gameTime = 0;
         gameTime += dt;
-        const canvasHeights = [340, 255, 170, 85]
+        const canvasHeights = [375, 295, 210, 125]
         if (Math.random() < 1 - .575**gameTime){
             allEnemies.push(new Enemy(-100, canvasHeights[Math.floor(Math.random() * canvasHeights.length)]));
-        };
+        };*/
         player.update();
     };
 
@@ -114,10 +125,10 @@ var Engine = (function(global) {
          */
         var rowImages = [
                 'images/grass-block.png',   // Top row is water
-                'images/water-block.png',   // Row 1 of 3 of stone
-                'images/water-block.png',   // Row 2 of 3 of stone
-                'images/water-block.png',   // Row 3 of 4 of stone
-                'images/water-block.png',   // Row 4 of 4 of stone
+                'images/stone-block.png',   // Row 1 of 3 of stone
+                'images/stone-block.png',   // Row 2 of 3 of stone
+                'images/stone-block.png',   // Row 3 of 4 of stone
+                'images/stone-block.png',   // Row 4 of 4 of stone
                 'images/grass-block.png',   // Row 1 of 2 of grass
                 'images/grass-block.png'    // Row 2 of 2 of grass
             ],
@@ -176,7 +187,7 @@ var Engine = (function(global) {
      * all of these images are properly loaded our game will start.
      */
     Resources.load([
-        'images/water-block.png',
+        'images/stone-block.png',
         'images/grass-block.png',
         'images/enemy-bobcat.png',
         'images/char-bunny.png'
