@@ -79,18 +79,18 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        //checkCollisions();
-        /*function collides(x, y, r, b, x2, y2, r2, b2) {
-            return !(r <= x2 || x > r2 ||
-             b <= y2 || y > b2);
+        checkCollisions();  
+    }
+// The objects are touching
+    function checkCollisions(){
+        //Referenced collision detection from http://blog.sklambert.com/html5-canvas-game-2d-collision-detection   
+        for (const enemy of allEnemies) {
+            if (enemy.x < player.x + 51 && enemy.x + 150  > player.x &&
+            enemy.y < player.y + 85 && enemy.y + 75 > player.y){
+                player.x = 230;
+                player.y = 460;
+            }
         }
-
-        function boxCollides(x, y, size, x2, y2, size2) {
-            return collides(player.x, player.y,
-                player.x + size[0], pos[1] + size[1],
-                pos2[0], pos2[1],
-                pos2[0] + size2[0], pos2[1] + size2[1]);
-        }*/
     }
 
     /* This is called by the update function and loops through all of the

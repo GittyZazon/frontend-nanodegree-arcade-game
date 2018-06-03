@@ -39,7 +39,9 @@ const Player = function(x, y) {
 }
 
 Player.prototype.update = function(dt) {
-    
+    if (this.y === 35){
+        document.querySelector('.winBox').style.display = "block";
+    }
 };
 
 Player.prototype.render = function() {
@@ -65,11 +67,33 @@ Player.prototype.handleInput = function(key) {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 let allEnemies = [];
-let enemy1 = allEnemies.push(new Enemy(-100, 375, 190));
-let enemy2 = allEnemies.push(new Enemy(-100, 295, 250));
-let enemy3 = allEnemies.push(new Enemy(-100, 210, 195));
-let enemy4 = allEnemies.push(new Enemy(-100, 125, 225));
+let enemy1 = allEnemies.push(new Enemy(-100, 375, 320));
+let enemy2 = allEnemies.push(new Enemy(-100, 295, 200));
+let enemy3 = allEnemies.push(new Enemy(-100, 210, 250));
+let enemy4 = allEnemies.push(new Enemy(-100, 125, 300));
 let player = new Player(230, 460);
+
+function reset() {
+    allEnemies = [];
+    let enemy1 = allEnemies.push(new Enemy(-100, 375, 320));
+    let enemy2 = allEnemies.push(new Enemy(-100, 295, 200));
+    let enemy3 = allEnemies.push(new Enemy(-100, 210, 250));
+    let enemy4 = allEnemies.push(new Enemy(-100, 125, 300));
+    player = null;
+    player = new Player (230, 460);
+}
+
+document.querySelector('button').onclick = function (e) {
+    document.querySelector('.winBox').style.display = "none";
+    reset();
+}
+
+window.onclick = function (e){
+    if (e.target == document.querySelector('.winBox')){
+        document.querySelector('.winBox').style.display = "none";
+    }
+    reset();
+}
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
