@@ -5,7 +5,7 @@ const Enemy = function(x, y, speed) {
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
-    this.sprite = 'images/enemy-bobcat.png';
+    this.sprite = 'images/enemy-driver.png';
     this.x = x;
     this.y = y;
     this.speed = speed;
@@ -18,6 +18,7 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     this.x += this.speed * dt;
+    //Creates illusion of enemies looping around 
     if (this.x >= 515){
         this.x = -100;
     }
@@ -32,12 +33,13 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 const Player = function(x, y) {
-    this.sprite = 'images/char-bunny.png';
+    this.sprite = 'images/char-granny.png';
     this.x = x;
     this.y = y;
 
 }
 
+//When player reaches other side, display winning modal
 Player.prototype.update = function(dt) {
     if (this.y === 35){
         document.querySelector('.winBox').style.display = "block";
@@ -48,6 +50,7 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
+//Move player according to keypress
 Player.prototype.handleInput = function(key) {
     if (key === 'left' && player.x > 30){
         player.x -= 100;
