@@ -17,4 +17,4 @@ Alternative Access:
 -----------------------------------
 
 If you would like to access the game without downloading, follow this link to the game page:
-https://www.gittyzazon.github.io/frontend-nanodegree-arcade-game
+https://gittyzazon.github.io/frontend-nanodegree-arcade-game/
